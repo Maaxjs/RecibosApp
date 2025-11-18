@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesador de Recibos PDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="/">
+                <img src="{{ url_for('static', filename='canadianProfileLogo.png') }}" alt="Canadian Profile Logo" style="height: 50px;">
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="upload-section">
+            <h1>Subir Recibo(s) de Sueldo (PDF)</h1>
+            <div id="message-container"></div>
+
+            <div id="uploadSection" class="upload-area">
+                <div class="upload-icon">📄</div>
+                <div class="upload-text">Arrastra PDFs o haz clic para añadir</div>
+                <div class="upload-hint">(Puedes añadir de a uno)</div>
+                <input type="file" id="fileInput" accept="application/pdf" multiple>
+            </div>
+
+            <div class="staging-section" id="stagingSection">
+                <h4>Archivos listos para procesar:</h4>
+                <ul id="stagingList">
+                    </ul>
+                <button type="button" class="btn btn-primary" id="processButton" disabled>
+                    Procesar (<span id="fileCount">0</span>) archivos
+                </button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Procesando PDF (OCR + Extracción IA)...</p>
+                <p id="progress-text"></p>
+            </div>
+
+            <div class="results-section" id="resultsSection">
+                <h3 style="color: #333; margin-top: 0;">Resultados de la Extracción</h3>
+                
+                <div id="resultsTableContainer"></div>
+
+            <div class="button-group" style="grid-template-columns: 1fr 1fr; gap: 10px;">
+                <a id="downloadButton" class="btn btn-primary" style="display: none;" download>Descargar Excel</a>
+                <button type="button" class="btn btn-secondary" id="resetBtn">Procesar otros PDF</button>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
